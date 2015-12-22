@@ -57,8 +57,8 @@ public class webservice extends HttpServlet {
 
 		PrintWriter pw = response.getWriter();
 		
-		if (nome.toLowerCase().trim().equals("fulano") 
-				&& senha.trim().equals("123")) {			
+		if (nome.toLowerCase().trim().equals(nome) 
+				&& senha.trim().equals(senha)) {			
 			
 			try {
 				
@@ -96,6 +96,6 @@ public class webservice extends HttpServlet {
 		return senha;
 	}
 
-}
+	}
 
 
