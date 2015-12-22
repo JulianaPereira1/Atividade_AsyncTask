@@ -5,16 +5,11 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
 
 
 /**
@@ -32,13 +27,13 @@ import java.net.URL;
         @Override
         protected void onPreExecute() {
 
-            Log.i("NotificationWearApp", "OnPreExecute");
+            Log.i("Login", "OnPreExecute");
         }
 
         @Override
         protected HttpURLConnection doInBackground(String... valores) {
 
-            Log.i("NotificationWearApp", "doInBackground: " + valores[0]);
+            Log.i("Login", "doInBackground: " + valores[0]);
 
             HttpURLConnection connection = null;
 
@@ -48,11 +43,11 @@ import java.net.URL;
 
             } catch (MalformedURLException ex) {
 
-                Log.e("NotificationWearApp","MalformedURLException");
+                Log.e("Login","MalformedURLException");
 
             } catch (IOException ex) {
 
-                Log.e("NotificationWearApp","MalformedURLException");
+                Log.e("Login","MalformedURLException");
             }
 
             return connection;
@@ -65,21 +60,15 @@ import java.net.URL;
 
                 int status = connection.getResponseCode();
 
-                Log.i("NotificationWearApp", "Status HTTP-Response: " + status);
+                Log.i("Login", "Status HTTP-Response: " + status);
 
                 String contentValue = HttpService.getHttpContent(connection);
-                JSONObject json = new JSONObject(contentValue);
 
-                String nome = json.getString("nome");
-                Toast.makeText(context, nome, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Login realizado com sucesso", Toast.LENGTH_LONG).show();
 
             } catch (IOException e) {
 
                 e.printStackTrace();
-
-            } catch (JSONException e) {
-
-                Log.e("NotificationWearApp", "JSONException");
             }
         }
 }
